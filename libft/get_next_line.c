@@ -77,16 +77,16 @@ char	*ft_trim_line(char *line)
 		return (line);
 	while (line[i] != '\n' && line[i])
 		i++;
-	if (line[i] == '\n')
-		new_line = ft_calloc((i + 2), sizeof(char));
-	else
-		new_line = ft_calloc((i + 1), sizeof(char));
+	// if (line[i] == '\n')
+	// 	new_line = ft_calloc((i + 2), sizeof(char));
+	// else
+	new_line = ft_calloc((i + 1), sizeof(char));
 	if (!new_line)
 		return (NULL);
 	while (++j < i)
 		new_line[j] = line[j];
 	if (line[j] == '\n')
-		new_line[j++] = '\n';
+		new_line[j++] = '\0';
 	if (line)
 		free(line);
 	return (new_line);

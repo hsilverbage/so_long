@@ -50,26 +50,18 @@ int	ft_count_lines(char *str)
 
 void	ft_check_rectangle(t_game *game)
 {
-	// size_t	len;
-	// int	i;
+	size_t	len;
+	int	i;
 
-	// i = 1;
-	// len = ft_strlen(game->map[0]);
-	// while (game->map)
-	// {
-	// 	if (ft_strlen(game->map[i]) != len)
-	// 	{
-	// 		free(game->map);
-	// 		ft_error("Map is not a rectangle");
-	// 	}
-	// 	i++;
-	// }
-
-	int i = 0;
-
+	i = 1;
+	len = ft_strlen(game->map[0]);
 	while (game->map[i])
 	{
-		ft_printf("%d\n", ft_strlen(game->map[i]));
+		if (ft_strlen(game->map[i]) != len)
+		{
+			free(game->map);
+			ft_error("Map is not a rectangle");
+		}
 		i++;
 	}
 }
