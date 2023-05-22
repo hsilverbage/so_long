@@ -22,13 +22,16 @@ typedef struct s_image
 	struct s_image	*next;
 }				t_image;
 
-typedef struct s_window
+typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	int		height;
 	int		width;
+	char	**map;
 	t_image	*images;
-}				t_window;
+}				t_game;
+
+int	ft_parsing(char **argv, t_game *game);
 
 #endif

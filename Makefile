@@ -34,34 +34,37 @@ LIBFT		= $(addprefix $(LIBF_DIR), $(LIBFT_A))
 MLX_A		= libmlx.a
 MLX			= $(addprefix $(MLX_DIR), $(MLX_A))
 
-
-SRC = $(SRC_DIR)/main.c
+SRC =	$(SRC_DIR)/main.c		\
+		$(SRC_DIR)/sources/parsing.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 
 all: $(NAME)
 
-$(NAME): libft $(OBJ)
+$(NAME): lib $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) $(MLX) -o $(NAME)
 	@echo "$(GREEN)Compilation succeded ! ✔️$(END)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)/game
+	@mkdir -p $(OBJ_DIR)/sources
 	@$(CC) $(CFLAGS) -I mlx -c $< -o $@
 
-libft:
-	@make -C ./libft
+lib:
+	@make -C libft
+
 
 norm:
 	@norminette ./libft | grep "Error" && echo "$(RED)Norminette KO!$(END)" || echo "$(GREEN)Norminette OK!$(END)"
 
 clean:
 	@echo "$(YELLOW)All .o files deleted 🗑 $(END)"
+		@make clean -C libft
 		@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@echo "$(YELLOW)The final program is deleted 🗑 $(END)"
+	@make fclean -C libft
 	@rm -f $(NAME)
 
 re: fclean norm all

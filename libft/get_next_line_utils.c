@@ -35,32 +35,3 @@ char	*ft_if_read_doesnt_work(char *line, char *buf)
 		free(line);
 	return (NULL);
 }
-
-/*
-void	*ft_calloc(size_t count, size_t size)
-{
-	size_t	i;
-	char	*s1;
-
-	i = 0;
-	s1 = malloc(count * size);
-	if (s1 == NULL)
-		return (NULL);
-	ft_bzero(s1, size * count);
-	return (s1);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	i;
-	char	*str;
-
-	str = (char *) s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = '\0';
-		i++;
-	}
-}
-*/
