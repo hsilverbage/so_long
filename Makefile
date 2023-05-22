@@ -8,9 +8,11 @@ ifeq ($(shell uname),Linux)
 	MLXFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o
 	CFLAGS = -Wall -Wextra -Werror -ggdb
 	MAKEFLAGS	+= --no-print-directory -s
+	MLX_DIR = mlx_linux/
 else
 	CFLAGS = -Wall -Wextra -Werror
 	MLXFLAGS = -framework OpenGL -framework AppKit -Lmlx -lmlx -lm
+	MLX_DIR = mlx/
 endif
 
 DISPLAY = @printf
@@ -30,7 +32,6 @@ LIBF_DIR 	= libft/
 LIBFT		= $(addprefix $(LIBF_DIR), $(LIBFT_A))
 
 MLX_A		= libmlx.a
-MLX_DIR 	= mlx/
 MLX			= $(addprefix $(MLX_DIR), $(MLX_A))
 
 

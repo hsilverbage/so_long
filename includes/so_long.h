@@ -26,6 +26,8 @@ typedef struct s_window
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		height;
+	int		width;
 	t_image	*images;
 }				t_window;
 

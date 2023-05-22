@@ -1,26 +1,29 @@
-#include "so_long.h"
+#include "./includes/so_long.h"
 
 void	ft_add_image(t_window *window, char *img_path)
 {
-	t_image	*new_image;
-	t_image *current = window->images;
+	//new = new
 
-	new_image = (t_image *)malloc(sizeof(t_image));
-	if (!new_image)
+	t_image	*new;
+	t_image *current;
+
+	current = window->images;
+	new = (t_image *)malloc(sizeof(t_image));
+	if (!new)
 		return ;
-	new_image->height = 64;
-	new_image->width = 64;
-	new_image->img_ptr = mlx_xpm_file_to_image(window->mlx_ptr, img_path, &(new_image->width), &(new_image->height));
-	new_image->img_path = img_path;
-	new_image->next = NULL;
+	new->height = 64;
+	new->width = 64;
+	new->img_ptr = mlx_xpm_file_to_image(window->mlx_ptr, img_path, &(new->width), &(new->height));
+	new->img_path = img_path;
+	new->next = NULL;
 
 	if (window->images == NULL)
-		window->images = new_image;
+		window->images = new;
 	else
 	{
 		while (current->next != NULL)
 			current = current->next;
-		current->next = new_image;
+		current->next = new;
 	}
 }
 
@@ -54,8 +57,25 @@ void	ft_free_all(t_window *window)
 		current = next;
 	}
 }
+
+int	ft_parsing(char *str)
+{
+	int	i;
+
+	i = ft_strlen(str);
+	if (!(str[i - 1] == 'r' && str[i - 2] == 'e'
+			&& str[i - 3] == 'b' && str[i - 4] == '.'))
+	{
+		write(1, "Invalid extension !", 20);
+		return (-1);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
+	if (argc != 2 || ft_parsing(argv[1]) == - 1)
+		return (0);
 	t_window	window;
 
 	window.mlx_ptr = mlx_init();
