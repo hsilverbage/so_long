@@ -56,6 +56,7 @@ SRCS =			ft_isalnum.c		\
 DIR_HEADERS 	= ./
 DIR_OBJS 		= .objs/
 RM				= rm -rf
+CC				= cc
 
 OBJS = $(addprefix $(DIR_OBJS), $(SRCS:.c=.o))
 

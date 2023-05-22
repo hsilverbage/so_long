@@ -14,11 +14,7 @@
 # define LIBFT_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
-# endif
-
-# ifndef FD_MAX
-#  define FD_MAX 1025
+#  define BUFFER_SIZE 50
 # endif
 
 # include <stdlib.h>

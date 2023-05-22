@@ -26,12 +26,15 @@ typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	char	**map;	
 	int		height;
 	int		width;
-	char	**map;
 	t_image	*images;
+
 }				t_game;
 
 int	ft_parsing(char **argv, t_game *game);
+
+void	ft_error(char *s);
 
 #endif

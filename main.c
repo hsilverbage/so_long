@@ -59,7 +59,7 @@ void	ft_free_all(t_game *game)
 }
 
 
-int	ft_error(char *s)
+void	ft_error(char *s)
 {
 	size_t	i;
 
@@ -69,7 +69,7 @@ int	ft_error(char *s)
 		write(2, &s[i], 1);
 		i++;
 	}
-	return (-1);
+	exit (0);
 }
 
 int	main(int argc, char **argv)
@@ -79,21 +79,25 @@ int	main(int argc, char **argv)
 	ft_bzero(&game, sizeof(game));
 
 	if (argc != 2)
-		return (ft_error("Wrong number of arguments"));
+		ft_error("Wrong number of arguments");
 	ft_parsing(argv, &game);
 
-	game.mlx_ptr = mlx_init();
-	game.win_ptr = mlx_new_window(game.mlx_ptr, 1000, 700, "so_long");
+	// int i = 0;
+	// while (game.map)
+	// 	ft_printf(game.map[i++]);
 
-	ft_add_image(&game, "sprites/wall.xpm");
-	ft_add_image(&game, "sprites/grass.xpm");
-	ft_add_image(&game, "sprites/homer.xpm");
-	ft_add_image(&game, "sprites/donut.xpm");
+	// game.mlx_ptr = mlx_init();
+	// game.win_ptr = mlx_new_window(game.mlx_ptr, 1000, 700, "so_long");
 
-	ft_display_images(&game);
-	mlx_loop(game.mlx_ptr);
+	// ft_add_image(&game, "sprites/wall.xpm");
+	// ft_add_image(&game, "sprites/grass.xpm");
+	// ft_add_image(&game, "sprites/homer.xpm");
+	// ft_add_image(&game, "sprites/donut.xpm");
 
-	ft_free_all(&game);
+	// ft_display_images(&game);
+	// mlx_loop(game.mlx_ptr);
+
+	// ft_free_all(&game);
 
 	return (0);
 }
