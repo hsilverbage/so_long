@@ -29,12 +29,18 @@ typedef struct s_game
 	char	**map;	
 	int		height;
 	int		width;
-	t_image	*images;
-
+	int		nb_c;
+	t_image	*wall;
+	t_image	*grass;
+	t_image	*homer;
+	t_image	*donuts;
 }				t_game;
 
 int	ft_parsing(char **argv, t_game *game);
 
 void	ft_error(char *s);
+void    ft_check_walls(t_game *game, int lines);
+void    ft_no_other_char(t_game *game);
+void    ft_display_map(t_game *game);
 
 #endif

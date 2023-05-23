@@ -34,8 +34,10 @@ LIBFT		= $(addprefix $(LIBF_DIR), $(LIBFT_A))
 MLX_A		= libmlx.a
 MLX			= $(addprefix $(MLX_DIR), $(MLX_A))
 
-SRC =	$(SRC_DIR)/main.c		\
-		$(SRC_DIR)/sources/parsing.c
+SRC =	$(SRC_DIR)/main.c					\
+		$(SRC_DIR)/sources/parsing.c		\
+		$(SRC_DIR)/sources/parsing_map.c	\
+		$(SRC_DIR)/sources/map.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

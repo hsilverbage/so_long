@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 17:36:06 by hsilverb          #+#    #+#             */
+/*   Updated: 2023/05/23 17:36:07 by hsilverb         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
 
 void	ft_check_if_ber(char *str)
@@ -19,11 +31,10 @@ void	ft_create_map(char **argv, int nb_lines, t_game *game)
 	int		fd;
 	char	*line;
 
-
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	line = get_next_line(fd);
-	game->map = malloc(sizeof(char*) * (nb_lines + 1));
+	game->map = malloc(sizeof(char *) * (nb_lines + 1));
 	if (!game->map)
 		exit (0);
 	while (line)
@@ -51,7 +62,7 @@ int	ft_count_lines(char *str)
 void	ft_check_rectangle(t_game *game)
 {
 	size_t	len;
-	int	i;
+	int		i;
 
 	i = 1;
 	len = ft_strlen(game->map[0]);
@@ -64,6 +75,7 @@ void	ft_check_rectangle(t_game *game)
 		}
 		i++;
 	}
+	game->width = len;
 }
 
 int	ft_parsing(char **argv, t_game *game)
@@ -74,5 +86,8 @@ int	ft_parsing(char **argv, t_game *game)
 	nb_lines = ft_count_lines(argv[1]);
 	ft_create_map(argv, nb_lines, game);
 	ft_check_rectangle(game);
+	game->height = nb_lines;
+	ft_check_walls(game, nb_lines);
+	ft_no_other_char(game);
 	return (0);
 }
