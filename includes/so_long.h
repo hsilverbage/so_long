@@ -34,6 +34,7 @@ typedef struct s_game
 	t_image	*grass;
 	t_image	*homer;
 	t_image	*donuts;
+	t_image	*exit;
 }				t_game;
 
 int	ft_parsing(char **argv, t_game *game);
@@ -46,5 +47,6 @@ void	ft_add_image_homer(t_game *game, char *img_path);
 void	ft_add_image_donuts(t_game *game, char *img_path);
 void	ft_add_image_grass(t_game *game, char *img_path);
 void	ft_add_image_wall(t_game *game, char *img_path);
+void	ft_add_image_exit(t_game *game, char *img_path);
 
 #endif
