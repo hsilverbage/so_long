@@ -27,8 +27,8 @@ void	ft_add_walls_to_map(t_game *game)
 				ft_show_img_in_window(game, game->donuts, (i * 64), (i_tab * 64));
 			if (game->map[i_tab][i] == 'P')
 				ft_show_img_in_window(game, game->homer, (i * 64), (i_tab * 64));
-			// if (game->map[i_tab][i] == 'E')
-			// 	ft_show_img_in_window(game, game->exit, (i * 64), (i_tab * 64));
+			if (game->map[i_tab][i] == 'E')
+				ft_show_img_in_window(game, game->exit, (i * 64), (i_tab * 64));
 			i++;
 		}
 		i = 0;
@@ -41,7 +41,7 @@ void	ft_display_map(t_game *game)
 	ft_add_image_grass(game, "sprites/grass.xpm");
 	ft_add_image_donuts(game, "sprites/donuts.xpm");
 	ft_add_image_homer(game, "sprites/homer.xpm");
-	//ft_add_image_homer(game, "sprites/exit.xpm");
+	ft_add_image_exit(game, "sprites/exit.xpm");
 
 	// ft_show_img_in_window(game, game->wall, 0, 0);
 	// ft_show_img_in_window(game, game->grass, 64, 64);
