@@ -6,27 +6,27 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:12 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/05/23 18:49:27 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/05/26 14:19:35 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/so_long.h"
 
-void	ft_free_all(t_game *game)
-{
-	t_image *current;
-	t_image *next;
+// void	ft_free_all(t_game *game)
+// {
+// 	t_image *current;
+// 	t_image *next;
 
-	current = game->images;
-	next = NULL;
-	while (current != NULL)
-	{
-		next = current->next;
-		mlx_destroy_image(game->mlx_ptr, current->img_ptr);
-		free(current);
-		current = next;
-	}
-}
+// 	current = game->images;
+// 	next = NULL;
+// 	while (current != NULL)
+// 	{
+// 		next = current->next;
+// 		mlx_destroy_image(game->mlx_ptr, current->img_ptr);
+// 		free(current);
+// 		current = next;
+// 	}
+// }
 
 
 void	ft_error(char *s)

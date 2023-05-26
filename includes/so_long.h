@@ -26,7 +26,7 @@ typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	char	**map;	
+	char	**map;
 	int		height;
 	int		width;
 	int		nb_c;
@@ -39,8 +39,12 @@ typedef struct s_game
 int	ft_parsing(char **argv, t_game *game);
 
 void	ft_error(char *s);
-void    ft_check_walls(t_game *game, int lines);
-void    ft_no_other_char(t_game *game);
-void    ft_display_map(t_game *game);
+void	ft_check_walls(t_game *game, int lines);
+void	ft_no_other_char(t_game *game);
+void	ft_display_map(t_game *game);
+void	ft_add_image_homer(t_game *game, char *img_path);
+void	ft_add_image_donuts(t_game *game, char *img_path);
+void	ft_add_image_grass(t_game *game, char *img_path);
+void	ft_add_image_wall(t_game *game, char *img_path);
 
 #endif
