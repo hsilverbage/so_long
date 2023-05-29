@@ -6,7 +6,7 @@ CC = cc -g3
 
 ifeq ($(shell uname),Linux)
 	MLXFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o
-	CFLAGS = -Wall -Wextra -Werror -ggdb -fsanitize=address
+	CFLAGS = -Wall -Wextra -Werror -ggdb
 	MAKEFLAGS	+= --no-print-directory -s
 	MLX_DIR = mlx_linux/
 else
@@ -37,8 +37,7 @@ MLX			= $(addprefix $(MLX_DIR), $(MLX_A))
 SRC =	$(SRC_DIR)/main.c					\
 		$(SRC_DIR)/sources/parsing.c		\
 		$(SRC_DIR)/sources/parsing_map.c	\
-		$(SRC_DIR)/sources/map.c			\
-		$(SRC_DIR)/sources/add_images.c
+		$(SRC_DIR)/sources/map.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
