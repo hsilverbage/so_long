@@ -27,9 +27,7 @@ END=\033[0m
 SRC_DIR = .
 OBJ_DIR = .obj
 
-LIBFT_A		= libft.a
-LIBF_DIR 	= libft/
-LIBFT		= $(addprefix $(LIBF_DIR), $(LIBFT_A))
+LIBFT		= libft/libft.a
 
 MLX_A		= libmlx.a
 MLX			= $(addprefix $(MLX_DIR), $(MLX_A))
@@ -37,7 +35,8 @@ MLX			= $(addprefix $(MLX_DIR), $(MLX_A))
 SRC =	$(SRC_DIR)/main.c					\
 		$(SRC_DIR)/sources/parsing.c		\
 		$(SRC_DIR)/sources/parsing_map.c	\
-		$(SRC_DIR)/sources/map.c
+		$(SRC_DIR)/sources/map.c			\
+		$(SRC_DIR)/sources/moves.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -54,7 +53,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 lib:
 	@make -C libft
-
 
 norm:
 	@norminette ./libft | grep "Error" && echo "$(RED)Norminette KO!$(END)" || echo "$(GREEN)Norminette OK!$(END)"

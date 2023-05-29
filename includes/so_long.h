@@ -16,8 +16,6 @@ typedef struct s_image
 {
 	void			*img_ptr;
 	char			*img_path;
-	int				width;
-	int				height;
 	struct s_image	*next;
 }				t_image;
 
@@ -43,5 +41,7 @@ void	ft_check_walls(t_game *game, int lines);
 void	ft_no_other_char(t_game *game);
 void	ft_display_map(t_game *game);
 void	ft_add_image(t_game *game, char *img_path, t_image **image);
+
+int		ft_move_event(int key, t_game *game);
 
 #endif

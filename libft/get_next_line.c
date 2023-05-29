@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:07:48 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/01/13 19:21:38 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/05/29 19:44:25 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,6 @@ char	*ft_trim_line(char *line)
 		return (line);
 	while (line[i] != '\n' && line[i])
 		i++;
-	// if (line[i] == '\n')
-	// 	new_line = ft_calloc((i + 2), sizeof(char));
-	// else
 	new_line = ft_calloc((i + 1), sizeof(char));
 	if (!new_line)
 		return (NULL);

@@ -6,28 +6,11 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:12 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/05/26 14:19:35 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/05/29 20:06:48 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/so_long.h"
-
-// void	ft_free_all(t_game *game)
-// {
-// 	t_image *current;
-// 	t_image *next;
-
-// 	current = game->images;
-// 	next = NULL;
-// 	while (current != NULL)
-// 	{
-// 		next = current->next;
-// 		mlx_destroy_image(game->mlx_ptr, current->img_ptr);
-// 		free(current);
-// 		current = next;
-// 	}
-// }
-
 
 void	ft_error(char *s)
 {
@@ -55,9 +38,9 @@ int	main(int argc, char **argv)
 	game.mlx_ptr = mlx_init();
 	game.win_ptr = mlx_new_window(game.mlx_ptr, (game.width * 64), (game.height * 64), "so_long");
 	ft_display_map(&game);
+	mlx_hook(game.win_ptr, 17, 1L << 2, ft_close_mlx, &game); //17 = destroy - ft_close ft destroy
+	mlx_hook(game.win_ptr, 2, 1L << 0, ft_moves, &game); // 2 = key pressed, ft_moves event if W or if A ..
 	mlx_loop(game.mlx_ptr);
-
-	// ft_free_all(&game);
 
 	return (0);
 }
