@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:10 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/05/23 17:47:37 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/05/26 21:55:30 by henrik           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	ft_check_c(t_game *game)
 	int	c;
 	int	i;
 	int	i_tab;
-	
+
 	c = 0;
 	i = 0;
 	i_tab = 0;
-	
+
 	while (i_tab < (game->height - 1))
 	{
 		while (i < (game->width - 1))
@@ -60,7 +60,7 @@ void	ft_check_c(t_game *game)
 	game->nb_c = c;
 
 }
-				
+
 void	ft_check_e_and_p(t_game *game)
 {
 	int	e;
