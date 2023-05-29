@@ -11,13 +11,17 @@ void	ft_img_to_win(t_game *game, t_image *image, int x, int y)
 void	ft_add_image(t_game *game, char *img_path, t_image **image)
 {
 	t_image	*new;
+	int		height;
+	int		width;
 
+	height = 64;
+	width = 64;
 	new = malloc(sizeof(t_image));
 	if (!new)
 		return ;
-	new->height = 64;
-	new->width = 64;
-	new->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, img_path, &(new->width), &(new->height));
+	// new->height = 64;
+	// new->width = 64;
+	new->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, img_path, &(width), &(height));
 	new->img_path = img_path;
 	new->next = NULL;
 

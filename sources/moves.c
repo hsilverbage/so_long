@@ -3,31 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 12:32:19 by henrik            #+#    #+#             */
-/*   Updated: 2023/05/29 17:09:41 by henrik           ###   ########lyon.fr   */
+/*   Updated: 2023/05/29 17:19:40 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+void	ft_w_pressed(t_game *game)
+{
+	
+
+
+}
+
 int	ft_move_event(int key, t_game *game)
 {
 	if (key == W)
-		env = w_pressed(env, 1);
+		env = ft_w_pressed();
 	else if (key == S)
-		env = s_pressed(env, 2);
+		env = ft_s_pressed();
 	else if (key == A)
-		env = a_pressed(env, 3);
+		env = ft_a_pressed();
 	else if (key == D)
-		env = d_pressed(env, 4);
+		env = ft_d_pressed();
 	else if (key == ESC)
 	{
-		close_mlx(env);
+		//ft_close_mlx(env);
 		ft_printf("%s\n", "close window");
 	}
-	else
-		ft_printf("%s\n", "invalid key");
 	return (key);
 }
