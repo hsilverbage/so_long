@@ -42,6 +42,7 @@ void	ft_no_other_char(t_game *game);
 void	ft_display_map(t_game *game);
 void	ft_add_image(t_game *game, char *img_path, t_image **image);
 
+int	ft_close_mlx(t_game *game);
 int		ft_move_event(int key, t_game *game);
 
 #endif
