@@ -26,7 +26,7 @@ typedef struct s_game
 	int		height;
 	int		width;
 	int		nb_c;
-	int		pos_x; //horizontale
+	int		pos_x; // horizontal
 	int		pos_y; //veticale
 	t_image	*wall;
 	t_image	*grass;
@@ -40,6 +40,8 @@ void	ft_check_walls(t_game *game, int lines);
 void	ft_no_other_char(t_game *game);
 void	ft_display_map(t_game *game);
 void	ft_add_image(t_game *game, char *img_path, t_image **image);
+void	ft_img_to_win(t_game *game, t_image *image, int x, int y);
+void	ft_add_sprites_to_map(t_game *game);
 
 int		ft_parsing(char **argv, t_game *game);
 int		ft_close_mlx(t_game *game);
