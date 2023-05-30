@@ -6,6 +6,15 @@ void	ft_img_to_win(t_game *game, t_image *image, int x, int y)
 
 	tmp = image;
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, tmp->img_ptr, x, y);
+	if (image == game->homer)
+	{
+		game->pos_x = x / 64;
+		game->pos_y = y / 64;
+		ft_printf("in ft : x is %d (i)\n", x);
+		ft_printf("in ft : y is %d (i_tab)\n", y);
+		ft_printf("in ft : pos x is %d \n", game->pos_x);
+		ft_printf("in ft : pos y is %d \n", game->pos_y);
+	}
 }
 
 void	ft_add_image(t_game *game, char *img_path, t_image **image)
@@ -21,8 +30,6 @@ void	ft_add_image(t_game *game, char *img_path, t_image **image)
 		return ;
 	new->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, img_path, &(width), &(height));
 	new->img_path = img_path;
-	new->next = NULL;
-
 	*image = new;
 }
 
@@ -63,4 +70,5 @@ void	ft_display_map(t_game *game)
 	ft_add_image(game, "sprites/exit.xpm", &game->exit);
 
 	ft_add_sprites_to_map(game);
+	ft_printf("horizontal pos is %d and the vertical pos of homer is at %d\n", game->pos_x, game->pos_y);
 }

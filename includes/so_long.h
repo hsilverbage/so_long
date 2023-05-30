@@ -1,5 +1,5 @@
-#ifndef			SO_LONG_H
-# define		SO_LONG_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 
 # ifdef __APPLE__
@@ -16,7 +16,6 @@ typedef struct s_image
 {
 	void			*img_ptr;
 	char			*img_path;
-	struct s_image	*next;
 }				t_image;
 
 typedef struct s_game
@@ -27,6 +26,8 @@ typedef struct s_game
 	int		height;
 	int		width;
 	int		nb_c;
+	int		pos_x; //horizontale
+	int		pos_y; //veticale
 	t_image	*wall;
 	t_image	*grass;
 	t_image	*homer;
@@ -34,15 +35,14 @@ typedef struct s_game
 	t_image	*exit;
 }				t_game;
 
-int	ft_parsing(char **argv, t_game *game);
-
 void	ft_error(char *s);
 void	ft_check_walls(t_game *game, int lines);
 void	ft_no_other_char(t_game *game);
 void	ft_display_map(t_game *game);
 void	ft_add_image(t_game *game, char *img_path, t_image **image);
 
-int	ft_close_mlx(t_game *game);
+int		ft_parsing(char **argv, t_game *game);
+int		ft_close_mlx(t_game *game);
 int		ft_move_event(int key, t_game *game);
 
 #endif
