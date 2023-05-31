@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrik <henrik@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:10 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/05/26 21:55:30 by henrik           ###   ########lyon.fr   */
+/*   Updated: 2023/05/31 16:15:11 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	ft_check_walls(t_game *game, int lines)
 	while (i_tab < lines - 1)
 	{
 		if (game->map[i_tab][0] != '1' || game->map[i_tab][i] != '1')
-			ft_error("Map is not surrounded by walls");
+			ft_error("Error\nMap is not surrounded by walls");
 		i_tab++;
 	}
 	i = 0;
 	while (game->map[i_tab][i])
 	{
 		if (game->map[0][i] != '1' || game->map[i_tab][i] != '1')
-			ft_error("Map is not surrounded by walls");
+			ft_error("Error\nMap is not surrounded by walls");
 		i++;
 	}
 }
@@ -56,7 +56,7 @@ void	ft_check_c(t_game *game)
 		i_tab++;
 	}
 	if (c < 1)
-		ft_error("Input at least one C");
+		ft_error("Error\nInput at least one C");
 	game->nb_c = c;
 
 }
@@ -86,7 +86,7 @@ void	ft_check_e_and_p(t_game *game)
 		i_tab++;
 	}
 	if (e != 1 || p != 1)
-		ft_error("Input one E and one P");
+		ft_error("Error\nInput one E and one P");
 	ft_check_c(game);
 }
 
@@ -104,7 +104,7 @@ void	ft_no_other_char(t_game *game)
 			if (game->map[i_tab][i] != '1' && game->map[i_tab][i] != '0'
 					&& game->map[i_tab][i] != 'C' && game->map[i_tab][i] != 'P'
 					&& game->map[i_tab][i] != 'E')
-				ft_error("Only 1 0 C E P are valid inputs in the map");
+				ft_error("Error\nOnly 1 0 C E P are valid inputs in the map");
 			i++;
 		}
 		i = 0;

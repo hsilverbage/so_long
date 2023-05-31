@@ -28,6 +28,7 @@ typedef struct s_game
 	int		nb_c;
 	int		pos_x; // horizontal
 	int		pos_y; //veticale
+	int		moves;
 	t_image	*wall;
 	t_image	*grass;
 	t_image	*homer;

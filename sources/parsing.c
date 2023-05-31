@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:06 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/05/31 15:13:32 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/05/31 16:14:39 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_check_if_ber(char *str)
 	if (!(str[i - 1] == 'r' && str[i - 2] == 'e'
 			&& str[i - 3] == 'b' && str[i - 4] == '.'))
 	{
-		ft_error("Invalid map extension !");
+		ft_error("Error\nInvalid map extension !");
 		exit(0);
 	}
 }
@@ -71,7 +71,7 @@ void	ft_check_rectangle(t_game *game)
 		if (ft_strlen(game->map[i]) != len)
 		{
 			free(game->map);
-			ft_error("Map is not a rectangle");
+			ft_error("Error\nMap is not a rectangle");
 		}
 		i++;
 	}
