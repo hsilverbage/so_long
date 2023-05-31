@@ -6,7 +6,7 @@ void	ft_img_to_win(t_game *game, t_image *image, int x, int y)
 
 	tmp = image;
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, tmp->img_ptr, x, y);
-	if (image == game->homer)
+	if (image == game->homer || image == game->exit_w_homer)
 	{
 		game->pos_x = x / 64;
 		game->pos_y = y / 64;
@@ -65,6 +65,7 @@ void	ft_display_map(t_game *game)
 	ft_add_image(game, "sprites/donuts.xpm", &game->donuts);
 	ft_add_image(game, "sprites/homer.xpm", &game->homer);
 	ft_add_image(game, "sprites/exit.xpm", &game->exit);
+	ft_add_image(game, "sprites/exit_w_homer.xpm", &game->exit_w_homer);
 
 	ft_add_sprites_to_map(game);
 }

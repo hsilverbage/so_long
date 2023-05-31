@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 12:32:19 by henrik            #+#    #+#             */
-/*   Updated: 2023/05/31 16:29:45 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/05/31 18:25:42 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,34 @@ void	ft_w_pressed(t_game *game)
 	if (game->map[y - 1][x] != '1')
 	{
 		game->moves += 1;
-		game->map[y - 1][x] = 'P';
-		game->map[y][x] = '0';
-		ft_img_to_win(game, game->homer, (x * 64), ((y - 1) * 64));
-		ft_img_to_win(game, game->grass, (x * 64), (y * 64));
+		if (game->map[y - 1][x] == 'E')
+		{
+			if (game->nb_c == 0)
+			{
+				ft_printf("You won with %d moves", game->moves);
+				ft_close_mlx(game);
+			}
+			else
+			{
+				game->map[y][x] = '0';
+				ft_img_to_win(game, game->exit_w_homer, (x * 64), ((y - 1) * 64));
+				ft_img_to_win(game, game->grass, (x * 64), (y * 64));
+			}
+		}
+		else
+		{
+			if (game->map[y - 1][x] == 'C')
+				game->nb_c -= 1;
+			if (game->map[y][x] == 'E')
+				ft_img_to_win(game, game->exit, (x * 64), (y * 64));
+			else
+			{
+				game->map[y][x] = '0';
+				ft_img_to_win(game, game->grass, (x * 64), (y * 64));
+			}
+			game->map[y - 1][x] = 'P';
+			ft_img_to_win(game, game->homer, (x * 64), ((y - 1) * 64));
+		}
 		ft_printf("You made %d moves\n", game->moves);
 	}
 }
@@ -45,14 +69,37 @@ void	ft_s_pressed(t_game *game)
 	y = game->pos_y;
 	if (game->map[y + 1][x] != '1')
 	{
-		game->map[y + 1][x] = 'P';
-		game->map[y][x] = '0';
-		ft_img_to_win(game, game->homer, (x * 64), ((y + 1) * 64));
-		ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 		game->moves += 1;
+		if (game->map[y + 1][x] == 'E')
+		{
+			if (game->nb_c == 0)
+			{
+				ft_printf("You won with %d moves", game->moves);
+				ft_close_mlx(game);
+			}
+			else
+			{
+				game->map[y][x] = '0';
+				ft_img_to_win(game, game->exit_w_homer, (x * 64), ((y + 1) * 64));
+				ft_img_to_win(game, game->grass, (x * 64), (y * 64));
+			}
+		}
+		else
+		{
+			if (game->map[y + 1][x] == 'C')
+				game->nb_c -= 1;
+			if (game->map[y][x] == 'E')
+				ft_img_to_win(game, game->exit, (x * 64), (y * 64));
+			else
+			{
+				game->map[y][x] = '0';
+				ft_img_to_win(game, game->grass, (x * 64), (y * 64));
+			}
+			game->map[y + 1][x] = 'P';
+			ft_img_to_win(game, game->homer, (x * 64), ((y + 1) * 64));
+		}
 		ft_printf("You made %d moves\n", game->moves);
 	}
-
 }
 
 void	ft_a_pressed(t_game *game)
@@ -64,14 +111,37 @@ void	ft_a_pressed(t_game *game)
 	y = game->pos_y;
 	if (game->map[y][x - 1] != '1')
 	{
-		game->map[y][x - 1] = 'P';
-		game->map[y][x] = '0';
-		ft_img_to_win(game, game->homer, ((x - 1) * 64), (y * 64));
-		ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 		game->moves += 1;
+		if (game->map[y][x - 1] == 'E')
+		{
+			if (game->nb_c == 0)
+			{
+				ft_printf("You won with %d moves", game->moves);
+				ft_close_mlx(game);
+			}
+			else
+			{
+				game->map[y][x] = '0';
+				ft_img_to_win(game, game->exit_w_homer, ((x - 1) * 64), (y * 64));
+				ft_img_to_win(game, game->grass, (x * 64), (y * 64));
+			}
+		}
+		else
+		{
+			if (game->map[y][x - 1] == 'C')
+				game->nb_c -= 1;
+			if (game->map[y][x] == 'E')
+				ft_img_to_win(game, game->exit, (x * 64), (y * 64));
+			else
+			{
+				game->map[y][x] = '0';
+				ft_img_to_win(game, game->grass, (x * 64), (y * 64));
+			}
+			game->map[y][x - 1] = 'P';
+			ft_img_to_win(game, game->homer, ((x - 1) * 64), (y * 64));
+		}
 		ft_printf("You made %d moves\n", game->moves);
 	}
-
 }
 
 void	ft_d_pressed(t_game *game)
@@ -83,14 +153,37 @@ void	ft_d_pressed(t_game *game)
 	y = game->pos_y;
 	if (game->map[y][x + 1] != '1')
 	{
-		game->map[y][x + 1] = 'P';
-		game->map[y][x] = '0';
-		ft_img_to_win(game, game->homer, ((x + 1) * 64), (y * 64));
-		ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 		game->moves += 1;
+		if (game->map[y][x + 1] == 'E')
+		{
+			if (game->nb_c == 0)
+			{
+				ft_printf("You won with %d moves", game->moves);
+				ft_close_mlx(game);
+			}
+			else
+			{
+				game->map[y][x] = '0';
+				ft_img_to_win(game, game->exit_w_homer, ((x + 1) * 64), (y * 64));
+				ft_img_to_win(game, game->grass, (x * 64), (y * 64));
+			}
+		}
+		else
+		{
+			if (game->map[y][x + 1] == 'C')
+				game->nb_c -= 1;
+			if (game->map[y][x] == 'E')
+				ft_img_to_win(game, game->exit, (x * 64), (y * 64));
+			else
+			{
+				game->map[y][x] = '0';
+				ft_img_to_win(game, game->grass, (x * 64), (y * 64));
+			}
+			game->map[y][x + 1] = 'P';
+			ft_img_to_win(game, game->homer, ((x + 1) * 64), (y * 64));
+		}
 		ft_printf("You made %d moves\n", game->moves);
 	}
-
 }
 
 int	ft_move_event(int key, t_game *game)

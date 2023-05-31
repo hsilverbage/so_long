@@ -34,6 +34,7 @@ typedef struct s_game
 	t_image	*homer;
 	t_image	*donuts;
 	t_image	*exit;
+	t_image	*exit_w_homer;
 }				t_game;
 
 void	ft_error(char *s);
