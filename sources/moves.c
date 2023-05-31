@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 12:32:19 by henrik            #+#    #+#             */
-/*   Updated: 2023/05/30 17:59:38 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/05/31 15:38:12 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	ft_w_pressed(t_game *game)
 
 	x = game->pos_x;
 	y = game->pos_y;
-	if (game->map[x][y - 1] != '1')
+	if (game->map[y - 1][x] != '1')
 	{
-		game->map[x][y - 1] = 'P';
-		game->map[x][y] = '0';
+		game->map[y - 1][x] = 'P';
+		game->map[y][x] = '0';
 		ft_img_to_win(game, game->homer, (x * 64), ((y - 1) * 64));
 		ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 	}
@@ -44,17 +44,16 @@ void	ft_s_pressed(t_game *game)
 
 	x = game->pos_x;
 	y = game->pos_y;
-	if (game->map[x][y + 1] != '1')
+	if (game->map[y + 1][x] != '1')
 	{
-		game->map[x][y + 1] = 'P';
-		game->map[x][y] = '0';
+		game->map[y + 1][x] = 'P';
+		game->map[y][x] = '0';
 		ft_img_to_win(game, game->homer, (x * 64), ((y + 1) * 64));
 		ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 	}
 	else
 		ft_printf("home is at pos ; %d : %d / x : y", game->pos_x, game->pos_y);
 }
-
 void	ft_a_pressed(t_game *game)
 {
 	int	x;
@@ -62,10 +61,10 @@ void	ft_a_pressed(t_game *game)
 
 	x = game->pos_x;
 	y = game->pos_y;
-	if (game->map[x - 1][y] != '1')
+	if (game->map[y][x - 1] != '1')
 	{
-		game->map[x - 1][y] = 'P';
-		game->map[x][y] = '0';
+		game->map[y][x - 1] = 'P';
+		game->map[y][x] = '0';
 		ft_img_to_win(game, game->homer, ((x - 1) * 64), (y * 64));
 		ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 	}
@@ -79,10 +78,10 @@ void	ft_d_pressed(t_game *game)
 
 	x = game->pos_x;
 	y = game->pos_y;
-	if (game->map[x + 1][y] != '1')
+	if (game->map[y][x + 1] != '1')
 	{
-		game->map[x + 1][y] = 'P';
-		game->map[x][y] = '0';
+		game->map[y][x + 1] = 'P';
+		game->map[y][x] = '0';
 		ft_img_to_win(game, game->homer, ((x + 1) * 64), (y * 64));
 		ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 	}
@@ -90,13 +89,10 @@ void	ft_d_pressed(t_game *game)
 		ft_printf("home is at pos ; %d : %d / x : y", game->pos_x, game->pos_y);
 }
 
+
+
 int	ft_move_event(int key, t_game *game)
 {
-	int i = 0;
-	while (game->map[i + 1])
-	{
-		ft_printf("%s\n", game->map[i++]);
-	}
 	if (key == W)
 		ft_w_pressed(game);
 	else if (key == S)
