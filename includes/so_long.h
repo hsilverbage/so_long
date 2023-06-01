@@ -44,9 +44,11 @@ void	ft_display_map(t_game *game);
 void	ft_add_image(t_game *game, char *img_path, t_image **image);
 void	ft_img_to_win(t_game *game, t_image *image, int x, int y);
 void	ft_add_sprites_to_map(t_game *game);
+void	ft_w_pressed(t_game *game, int x, int y);
+void	ft_s_pressed(t_game *game, int x, int y);
 
 int		ft_parsing(char **argv, t_game *game);
 int		ft_close_mlx(t_game *game);
 int		ft_move_event(int key, t_game *game);
-
+int		ft_close_mlx(t_game *game);
 #endif

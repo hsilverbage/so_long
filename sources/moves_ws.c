@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   moves_ws.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/29 12:32:19 by henrik            #+#    #+#             */
-/*   Updated: 2023/06/01 14:26:12 by hsilverb         ###   ########lyon.fr   */
+/*   Created: 2023/06/01 14:23:38 by hsilverb          #+#    #+#             */
+/*   Updated: 2023/06/01 14:25:25 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	ft_if_exit_a(t_game *game, int x, int y)
+void	ft_if_exit_w(t_game *game, int x, int y)
 {
 	if (game->nb_c == 0)
 	{
@@ -22,22 +22,22 @@ void	ft_if_exit_a(t_game *game, int x, int y)
 	else
 	{
 		game->map[y][x] = '0';
-		ft_img_to_win(game, game->exit_w_homer, ((x - 1) * 64), (y * 64));
+		ft_img_to_win(game, game->exit_w_homer, (x * 64), ((y - 1) * 64));
 		ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 	}
 }
-void	ft_a_pressed(t_game *game, int x, int y)
+void	ft_w_pressed(t_game *game, int x, int y)
 {
-	if (game->map[y][x - 1] != '1')
+	if (game->map[y - 1][x] != '1')
 	{
 		game->moves += 1;
-		if (game->map[y][x - 1] == 'E')
+		if (game->map[y - 1][x] == 'E')
 		{
-			ft_if_exit_a(game, x, y);
+			ft_if_exit_w(game, x, y);
 		}
 		else
 		{
-			if (game->map[y][x - 1] == 'C')
+			if (game->map[y - 1][x] == 'C')
 				game->nb_c -= 1;
 			if (game->map[y][x] == 'E')
 				ft_img_to_win(game, game->exit, (x * 64), (y * 64));
@@ -46,13 +46,13 @@ void	ft_a_pressed(t_game *game, int x, int y)
 				game->map[y][x] = '0';
 				ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 			}
-			game->map[y][x - 1] = 'P';
-			ft_img_to_win(game, game->homer, ((x - 1) * 64), (y * 64));
+			game->map[y - 1][x] = 'P';
+			ft_img_to_win(game, game->homer, (x * 64), ((y - 1) * 64));
 		}
 		ft_printf("You made %d moves\n", game->moves);
 	}
 }
-void	ft_if_exit_d(t_game *game, int x, int y)
+void	ft_if_exit_s(t_game *game, int x, int y)
 {
 	if (game->nb_c == 0)
 	{
@@ -62,22 +62,22 @@ void	ft_if_exit_d(t_game *game, int x, int y)
 	else
 	{
 		game->map[y][x] = '0';
-		ft_img_to_win(game, game->exit_w_homer, ((x + 1) * 64), (y * 64));
+		ft_img_to_win(game, game->exit_w_homer, (x * 64), ((y + 1) * 64));
 		ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 	}
 }
-void	ft_d_pressed(t_game *game, int x, int y)
+void	ft_s_pressed(t_game *game, int x, int y)
 {
-	if (game->map[y][x + 1] != '1')
+	if (game->map[y + 1][x] != '1')
 	{
 		game->moves += 1;
-		if (game->map[y][x + 1] == 'E')
+		if (game->map[y + 1][x] == 'E')
 		{
-			ft_if_exit_d(game, x, y);
+			ft_if_exit_s(game, x, y);
 		}
 		else
 		{
-			if (game->map[y][x + 1] == 'C')
+			if (game->map[y + 1][x] == 'C')
 				game->nb_c -= 1;
 			if (game->map[y][x] == 'E')
 				ft_img_to_win(game, game->exit, (x * 64), (y * 64));
@@ -86,35 +86,9 @@ void	ft_d_pressed(t_game *game, int x, int y)
 				game->map[y][x] = '0';
 				ft_img_to_win(game, game->grass, (x * 64), (y * 64));
 			}
-			game->map[y][x + 1] = 'P';
-			ft_img_to_win(game, game->homer, ((x + 1) * 64), (y * 64));
+			game->map[y + 1][x] = 'P';
+			ft_img_to_win(game, game->homer, (x * 64), ((y + 1) * 64));
 		}
 		ft_printf("You made %d moves\n", game->moves);
 	}
-}
-
-int	ft_move_event(int key, t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = game->pos_x;
-	y = game->pos_y;
-	if (key == W)
-		ft_w_pressed(game, x, y);
-	else if (key == S)
-		ft_s_pressed(game, x, y);
-	else if (key == A)
-		ft_a_pressed(game, x, y);
-	else if (key == D)
-		ft_d_pressed(game, x, y);
-	else if (key == ESC)
-		ft_close_mlx(game);
-	// int i = 0;
-	// while (game->map[i])
-	// {
-	// 	ft_printf("%s\n", game->map[i++]);
-	// }
-	// ft_printf("number of C left ; %d", game->nb_c);
-	return (key);
 }
