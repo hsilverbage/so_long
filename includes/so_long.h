@@ -37,7 +37,7 @@ typedef struct s_game
 	t_image	*exit_w_homer;
 }				t_game;
 
-void	ft_error(char *s);
+void	ft_error(char *str, t_game *game);
 void	ft_check_walls(t_game *game, int lines);
 void	ft_no_other_char(t_game *game);
 void	ft_display_map(t_game *game);
@@ -51,4 +51,5 @@ int		ft_parsing(char **argv, t_game *game);
 int		ft_close_mlx(t_game *game);
 int		ft_move_event(int key, t_game *game);
 int		ft_close_mlx(t_game *game);
+
 #endif

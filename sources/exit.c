@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 20:11:28 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/06/01 18:16:42 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/06/02 17:57:33 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,53 +54,60 @@ void	ft_free_map(char **str)
 		free(str[i]);
 		i++;
 	}
-	if (str)
-		free(str);
+	// free(str);
 }
 void	ft_destory_image(t_game *game)
 {
 	if (game) //&& CREATE AN INT THAT CHANGES ONCE I VE CREATED THE SPRITES
 	{
-		if (game->homer.img_ptr)
-			mlx_destroy_image(game->mlx_ptr, game->homer.img_ptr);
-		if (game->exit.img_ptr)
-			mlx_destroy_image(game->mlx_ptr, game->exit.img_ptr);
-		if (game->donuts.img_ptr)
-			mlx_destroy_image(game->mlx_ptr, game->donuts.img_ptr);
-		if (game->grass.img_ptr)
-			mlx_destroy_image(game->mlx_ptr, game->grass.img_ptr);
-		if (game->wall.img_ptr)
-			mlx_destroy_image(game->mlx_ptr, game->wall.img_ptr);
-		if (game->exit_w_homer.img_ptr)
-			mlx_destroy_image(game->mlx_ptr, game->exit_w_homer.img_ptr);
+		if (game->homer->img_ptr)
+			mlx_destroy_image(game->mlx_ptr, game->homer->img_ptr);
+		if (game->exit->img_ptr)
+			mlx_destroy_image(game->mlx_ptr, game->exit->img_ptr);
+		if (game->donuts->img_ptr)
+			mlx_destroy_image(game->mlx_ptr, game->donuts->img_ptr);
+		if (game->grass->img_ptr)
+			mlx_destroy_image(game->mlx_ptr, game->grass->img_ptr);
+		if (game->wall->img_ptr)
+			mlx_destroy_image(game->mlx_ptr, game->wall->img_ptr);
+		if (game->exit_w_homer->img_ptr)
+			mlx_destroy_image(game->mlx_ptr, game->exit_w_homer->img_ptr);
 	}
 }
 
-void	ft_free_all(t_game *env)
+static void	ft_free_all(t_game *game)
 {
 	ft_destory_image(game);
-	if (game->homer.img_path)
-		free(game->homer.img_path);
-	if (game->map.img_path)
-		free(game->map.img_path);
-	if (game->map.img_path01)
-		free(game->map.img_path01);
-	if (game->enemy.img_path)
-		free(game->enemy.img_path);
-	if (game->exit.img_path)
-		free(game->exit.img_path);
-	if (game->item.img_path)
-		free(game->item.img_path);
+	if (game->homer)
+		free(game->homer);
+	if (game->grass)
+		free(game->grass);
+	if (game->wall)
+		free(game->wall);
+	if (game->donuts)
+		free(game->donuts);
+	if (game->exit)
+		free(game->exit);
+	if (game->exit_w_homer)
+		free(game->exit_w_homer);
+		// free(game->homer);
+	// free(game->wall);
+	// free(game->exit);
+	// free(game->homer);
+	// free(game->exit_w_homer);
+	// free(game->donuts);
+	// free(game->grass);
 }
 
 int	ft_close_mlx(t_game *game)
 {
 	if (game->map)
 		ft_free_map(game->map);
-	ft_free_all(env);
+	ft_free_all(game);
 	if (game->mlx_ptr)
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	//mlx_destroy_display(env->mlx.init);
+	mlx_destroy_display(game->mlx_ptr);
+	//free(game->win_ptr);
 	free(game->mlx_ptr);
 	exit(0);
 	return (0);

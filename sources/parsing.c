@@ -6,13 +6,13 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:06 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/06/01 16:32:28 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/06/02 18:10:19 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	ft_check_if_ber(char *str)
+void	ft_check_if_ber(char *str, t_game *game)
 {
 	int	i;
 
@@ -20,7 +20,7 @@ void	ft_check_if_ber(char *str)
 	if (!(str[i - 1] == 'r' && str[i - 2] == 'e'
 			&& str[i - 3] == 'b' && str[i - 4] == '.'))
 	{
-		ft_error("Error\nInvalid map extension !");
+		ft_error("Error\nInvalid map extension !", game);
 		exit(0);
 	}
 }
@@ -50,11 +50,17 @@ int	ft_count_lines(char *str)
 {
 	int	nb;
 	int	fd;
+	char	*s;
 
 	fd = open(str, O_RDONLY);
 	nb = 0;
-	while (get_next_line(fd))
+	s = get_next_line(fd);
+	while (s)
+	{
 		nb++;
+		free(s);
+		s = get_next_line(fd);
+	}
 	close(fd);
 	return (nb);
 }
@@ -71,7 +77,7 @@ void	ft_check_rectangle(t_game *game)
 		if (ft_strlen(game->map[i]) != len)
 		{
 			free(game->map);
-			ft_error("Error\nMap is not a rectangle");
+			ft_error("Error\nMap is not a rectangle", game);
 		}
 		i++;
 	}
@@ -82,7 +88,7 @@ int	ft_parsing(char **argv, t_game *game)
 {
 	int	nb_lines;
 
-	ft_check_if_ber(argv[1]);
+	ft_check_if_ber(argv[1], game);
 	nb_lines = ft_count_lines(argv[1]);
 	ft_create_map(argv, nb_lines, game);
 	ft_check_rectangle(game);
