@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:52:03 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/01/04 16:06:47 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/06/05 14:46:00 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 50
+#  define BUFFER_SIZE 1
 # endif
 
 # include <stdlib.h>

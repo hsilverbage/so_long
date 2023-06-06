@@ -6,13 +6,13 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:12 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/05/31 15:27:55 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 16:39:34 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/so_long.h"
 
-void	ft_error(char *str)
+void	ft_error(char *str, t_game *game)
 {
 	size_t	i;
 
@@ -22,6 +22,8 @@ void	ft_error(char *str)
 		write(2, &str[i], 1);
 		i++;
 	}
+	if (game->map)
+		ft_free_map(game->map);
 	exit (0);
 }
 
@@ -32,7 +34,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&game, sizeof(game));
 
 	if (argc != 2)
-		ft_error("Wrong number of arguments");
+		ft_error("Wrong number of arguments", &game);
 	ft_parsing(argv, &game);
 	game.mlx_ptr = mlx_init();
 	game.win_ptr = mlx_new_window(game.mlx_ptr, (game.width * 64), (game.height * 64), "so_long");

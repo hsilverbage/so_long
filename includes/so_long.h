@@ -37,7 +37,7 @@ typedef struct s_game
 	t_image	*exit_w_homer;
 }				t_game;
 
-void	ft_error(char *s);
+void	ft_error(char *s, t_game *game);
 void	ft_check_walls(t_game *game, int lines);
 void	ft_no_other_char(t_game *game);
 void	ft_display_map(t_game *game);
@@ -46,6 +46,8 @@ void	ft_img_to_win(t_game *game, t_image *image, int x, int y);
 void	ft_add_sprites_to_map(t_game *game);
 void	ft_w_pressed(t_game *game, int x, int y);
 void	ft_s_pressed(t_game *game, int x, int y);
+void	ft_diffusion(t_game *game);
+void	ft_free_map(char **str);
 
 int		ft_parsing(char **argv, t_game *game);
 int		ft_close_mlx(t_game *game);

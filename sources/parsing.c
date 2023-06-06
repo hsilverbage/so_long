@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:06 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/06/01 16:32:28 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 16:37:00 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,16 @@ void	ft_create_map(char **argv, int nb_lines, t_game *game)
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	line = get_next_line(fd);
-	game->map = malloc(sizeof(char *) * (nb_lines + 1));
+	game->map = ft_calloc(nb_lines + 1, sizeof(char *));
 	if (!game->map)
-		exit (0);
-	while (line)
+		ft_error("Error\nYour map file is empty");
+	while (line[0] != '\0')
 	{
 		game->map[i++] = line;
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	game->map[i] = NULL;
 	close(fd);
 }
@@ -50,11 +52,21 @@ int	ft_count_lines(char *str)
 {
 	int	nb;
 	int	fd;
+	char	*s;
 
 	fd = open(str, O_RDONLY);
 	nb = 0;
-	while (get_next_line(fd))
+	s = get_next_line(fd);
+	if (!s)
+		ft_error("Error\nYour map file is empty");
+	while (s[0] != '\0')
+	{
 		nb++;
+		free(s);
+		s = get_next_line(fd);
+	}
+	if (s)
+		free(s);
 	close(fd);
 	return (nb);
 }
@@ -85,9 +97,13 @@ int	ft_parsing(char **argv, t_game *game)
 	ft_check_if_ber(argv[1]);
 	nb_lines = ft_count_lines(argv[1]);
 	ft_create_map(argv, nb_lines, game);
+	if (!game->map)
+		ft_error("Error\nYour map file is empty");
 	ft_check_rectangle(game);
 	game->height = nb_lines;
 	ft_check_walls(game, nb_lines);
 	ft_no_other_char(game);
+	ft_diffusion(game);
+	ft_create_map(argv, nb_lines, game);
 	return (0);
 }

@@ -50,8 +50,7 @@ SRCS =			ft_isalnum.c		\
 				ft_lstmap_bonus.c			\
 				ft_printf.c					\
 				ft_printf_utils.c			\
-				get_next_line.c				\
-				get_next_line_utils.c
+				get_next_line.c	
 
 DIR_HEADERS 	= ./
 DIR_OBJS 		= .objs/
