@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 20:11:28 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/06/05 15:28:49 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 17:35:52 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ void	ft_free_map(char **str)
 		free(str[i]);
 		i++;
 	}
-	free(str);
+	if (str)
+		free(str);
 }
 void	ft_destory_image(t_game *game)
 {
-	if (game) //&& CREATE AN INT THAT CHANGES ONCE I VE CREATED THE SPRITES
+	if (game)
 	{
 		if (game->homer->img_ptr)
 			mlx_destroy_image(game->mlx_ptr, game->homer->img_ptr);

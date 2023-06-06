@@ -20,11 +20,17 @@ void	ft_add_image(t_game *game, char *img_path, t_image **image)
 	int		width;
 
 	height = 64;
-	width = 64;
+	width = 64;;
 	new = malloc(sizeof(t_image));
 	if (!new)
 		return ;
 	new->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, img_path, &(width), &(height));
+	if (!new->img_ptr)
+	{
+		free(new->img_ptr);
+		free(new);
+		ft_error("Error\nTrying to erase xpm files in a cunt move\n", game);
+	}
 	new->img_path = img_path;
 	*image = new;
 }

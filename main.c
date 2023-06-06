@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:12 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/06/06 16:39:34 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 18:54:27 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	main(int argc, char **argv)
 		ft_error("Wrong number of arguments", &game);
 	ft_parsing(argv, &game);
 	game.mlx_ptr = mlx_init();
+	if (!game.mlx_ptr)
+		return (0);
 	game.win_ptr = mlx_new_window(game.mlx_ptr, (game.width * 64), (game.height * 64), "so_long");
 	ft_display_map(&game);
 	mlx_hook(game.win_ptr, 17, 1L << 2, ft_close_mlx, &game); //17 = destroy - ft_close ft destroy

@@ -6,13 +6,13 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:06 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/06/06 16:37:00 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 17:30:56 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	ft_check_if_ber(char *str)
+void	ft_check_if_ber(char *str, t_game *game)
 {
 	int	i;
 
@@ -20,7 +20,7 @@ void	ft_check_if_ber(char *str)
 	if (!(str[i - 1] == 'r' && str[i - 2] == 'e'
 			&& str[i - 3] == 'b' && str[i - 4] == '.'))
 	{
-		ft_error("Error\nInvalid map extension !");
+		ft_error("Error\nInvalid map extension !", game);
 		exit(0);
 	}
 }
@@ -36,7 +36,7 @@ void	ft_create_map(char **argv, int nb_lines, t_game *game)
 	line = get_next_line(fd);
 	game->map = ft_calloc(nb_lines + 1, sizeof(char *));
 	if (!game->map)
-		ft_error("Error\nYour map file is empty");
+		ft_error("Error\nYour map file is empty", game);
 	while (line[0] != '\0')
 	{
 		game->map[i++] = line;
@@ -48,7 +48,7 @@ void	ft_create_map(char **argv, int nb_lines, t_game *game)
 	close(fd);
 }
 
-int	ft_count_lines(char *str)
+int	ft_count_lines(char *str, t_game *game)
 {
 	int	nb;
 	int	fd;
@@ -58,7 +58,7 @@ int	ft_count_lines(char *str)
 	nb = 0;
 	s = get_next_line(fd);
 	if (!s)
-		ft_error("Error\nYour map file is empty");
+		ft_error("Error\nYour map file is empty", game);
 	while (s[0] != '\0')
 	{
 		nb++;
@@ -81,10 +81,7 @@ void	ft_check_rectangle(t_game *game)
 	while (game->map[i])
 	{
 		if (ft_strlen(game->map[i]) != len)
-		{
-			free(game->map);
-			ft_error("Error\nMap is not a rectangle");
-		}
+			ft_error("Error\nMap is not a rectangle", game);
 		i++;
 	}
 	game->width = len;
@@ -94,11 +91,13 @@ int	ft_parsing(char **argv, t_game *game)
 {
 	int	nb_lines;
 
-	ft_check_if_ber(argv[1]);
-	nb_lines = ft_count_lines(argv[1]);
+	ft_check_if_ber(argv[1], game);
+	nb_lines = ft_count_lines(argv[1], game);
+	if (nb_lines < 3)
+		ft_error("Error\nThe map can't be smaller than 3 lines", game);
 	ft_create_map(argv, nb_lines, game);
 	if (!game->map)
-		ft_error("Error\nYour map file is empty");
+		ft_error("Error\nYour map file is empty", game);
 	ft_check_rectangle(game);
 	game->height = nb_lines;
 	ft_check_walls(game, nb_lines);

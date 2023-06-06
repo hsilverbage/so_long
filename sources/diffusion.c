@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:30:05 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/06/06 16:20:05 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 17:36:17 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_diffusion(t_game *game)
 	x = ft_find_x(game);
 	y = ft_find_y(game);
 	check = ft_flood_fill(map, x ,y, to_find, game);
-	ft_free_map(game->map);
 	if (check != 0)
-		ft_error("Error\nExit or item are not reachable");
+		ft_error("Error\nExit or item are not reachable", game);
+	ft_free_map(game->map);
 }

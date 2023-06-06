@@ -48,6 +48,7 @@ void	ft_w_pressed(t_game *game, int x, int y);
 void	ft_s_pressed(t_game *game, int x, int y);
 void	ft_diffusion(t_game *game);
 void	ft_free_map(char **str);
+void	ft_destory_image(t_game *game);
 
 int		ft_parsing(char **argv, t_game *game);
 int		ft_close_mlx(t_game *game);
