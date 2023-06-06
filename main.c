@@ -6,7 +6,7 @@
 /*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:12 by hsilverb          #+#    #+#             */
-/*   Updated: 2023/06/06 18:54:27 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 19:39:20 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ int	main(int argc, char **argv)
 	ft_bzero(&game, sizeof(game));
 
 	if (argc != 2)
-		ft_error("Wrong number of arguments", &game);
+		ft_error("Error\nWrong number of arguments", &game);
 	ft_parsing(argv, &game);
 	game.mlx_ptr = mlx_init();
 	if (!game.mlx_ptr)
-		return (0);
+		ft_error("Error\nMlx_init didnt work", &game);
 	game.win_ptr = mlx_new_window(game.mlx_ptr, (game.width * 64), (game.height * 64), "so_long");
+	if (!game.win_ptr)
+		ft_error("Error\nWindow ptr fucked up\n", &game);
 	ft_display_map(&game);
 	mlx_hook(game.win_ptr, 17, 1L << 2, ft_close_mlx, &game); //17 = destroy - ft_close ft destroy
 	mlx_hook(game.win_ptr, 2, 1L << 0, ft_move_event, &game); // 2 = key pressed, ft_moves event if W or if A ..

@@ -29,6 +29,7 @@ void	ft_add_image(t_game *game, char *img_path, t_image **image)
 	{
 		free(new->img_ptr);
 		free(new);
+		free(game->mlx_ptr);
 		ft_error("Error\nTrying to erase xpm files in a cunt move\n", game);
 	}
 	new->img_path = img_path;
