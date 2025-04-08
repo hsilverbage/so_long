@@ -109,7 +109,6 @@ make
   
 **42 Login**: hsilverb
 **Contact**: [LinkedIn](https://www.linkedin.com/in/henrik-silverbage/)
-
 ---
 
 ## 📝 License
